@@ -31,6 +31,12 @@ public class ClientCrudService {
         System.out.println("There is no client with id: " + id);
         return null;
     }
+    public int getLastClientId() {
+        ArrayList<Integer> allClientsId = getAllClientsId();
+        int lastId = allClientsId.get(allClientsId.size() - 1);
+        return lastId;
+
+    }
 
     public ArrayList<Integer> getAllClientsId() {
         ArrayList<Integer> idList = new ArrayList<>();
@@ -67,8 +73,21 @@ public class ClientCrudService {
                 session.remove(getClientById(id));
                 transaction.commit();
                 session.close();
-            } else {
-                System.out.println("There is no client with id: " + id);}
+                break;
+            }
         }
+    }
+
+    public boolean verifyIfClientExists(Client client) {
+        if (client != null) {
+            int id = client.getId();
+            ArrayList<Integer> allClientsId = getAllClientsId();
+            for (int i = 0; i < allClientsId.size(); i++) {
+                if (id == allClientsId.get(i)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

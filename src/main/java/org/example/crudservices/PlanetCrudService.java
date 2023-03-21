@@ -67,9 +67,20 @@ public class PlanetCrudService {
                 session.remove(getPlanetById(id));
                 transaction.commit();
                 session.close();
-            } else {
-                System.out.println("There is no planet with id: " + id);
+                break;
             }
         }
+    }
+    public boolean verifyIfPlanetExists(Planet planet) {
+        if (planet != null) {
+            String id = planet.getId();
+            ArrayList<String> allPlanetsId = getAllPlanetsId();
+            for (int i = 0; i < allPlanetsId.size(); i++) {
+                if (id.equals(allPlanetsId.get(i))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
