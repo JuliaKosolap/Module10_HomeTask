@@ -21,7 +21,7 @@ public class App {
         int lastClientId = service.getLastClientId();
         System.out.println(service.getClientById(lastClientId));
         PlanetCrudService planetService = new PlanetCrudService();
-        Planet planet = new Planet("ST8", "Saturn");
+        Planet planet = new Planet("ST9", "Saturn");
         planetService.create(planet);
         TicketCrudService ticketCrudService = new TicketCrudService();
         ArrayList<Integer> allTicketsId = ticketCrudService.getAllTicketsId();
